@@ -110,24 +110,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyAPxt-nOqGS5MsLUfa72yYsPAkg6SUK6bo",
-            authDomain: "creator-wibuku.firebaseapp.com",
-            databaseURL: "https://creator-wibuku-default-rtdb.firebaseio.com",
-            projectId: "creator-wibuku",
-            storageBucket: "creator-wibuku.appspot.com",
-            messagingSenderId: "40606194321",
-            appId: "1:40606194321:web:918be2366a28d711687d30",
-            measurementId: "G-P2QL050EQ5"
-        };
-        firebase.initializeApp(firebaseConfig);
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                console.log("User is signed in");
-            } else {
-                window.location.href = "login.html";
-            }
-        });
         var animeDatabase = [
             { title: "Kakkou no Iinazuke", image: "../media/image/kakkounoIinazuke.jpg", page: "../anime/kakkounoIinazuke.html" }
         ];
