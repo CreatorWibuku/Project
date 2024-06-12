@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wibuku Register</title>
+    <title>Wibuku Login</title>
     <style>
         body {
             background-color: #0065FF;
@@ -31,7 +31,6 @@
             font-weight: bold;
             margin-bottom: 5px;
         }
-        input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: calc(98% - 12px);
@@ -52,7 +51,7 @@
         button:hover {
             background-color: #003F7F;
         }
-        .login-link {
+        .register-link {
             text-align: center;
             margin-top: 10px;
         }
@@ -63,7 +62,6 @@
     </style>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     <script>
         var firebaseConfig = {
             apiKey: "AIzaSyAPxt-nOqGS5MsLUfa72yYsPAkg6SUK6bo",
@@ -76,39 +74,31 @@
             measurementId: "G-P2QL050EQ5"
         };
         firebase.initializeApp(firebaseConfig);
-        function register() {
-            var username = document.getElementById('username').value;
+        function login() {
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    var userId = userCredential.user.uid;
-                    firebase.database().ref('users/' + userId).set({
-                        username: username,
-                        email: email
-                    });
-                    alert("Registrasi berhasil!");
-                    window.location.href = "login.html";
+                    alert("Login berhasil!");
+                    window.location.href = "home.html";
                 })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    alert("Masukan username, email, dan password yang benar!");
+                    alert("Email atau password salah!");
                 });
         }
     </script>
 </head>
 <body>
     <form>
-        <h2>Register Account</h2>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
+        <h2>Login Account</h2>
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
-        <button type="button" onclick="register()">Register</button>
-        <div class="login-link">Sudah memiliki akun? <a href="login.html">Login</a></div>
+        <button type="button" onclick="login()">Login</button>
+        <div class="register-link">Belum memiliki akun? <a href="register.html">Register</a></div>
         <div class="reset-link">Lupa sandi? <a href="reset password.html">Reset</a></div>
     </form>
 </body>
